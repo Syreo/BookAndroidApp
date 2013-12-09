@@ -7,6 +7,7 @@ import com.cycle7.bookapp.database.DBTools;
 import android.os.Bundle;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,7 +94,9 @@ public class ViewBookFragment extends Fragment {
 		bookId = getActivity().getIntent().getStringExtra("bookId");
 		book = dbTools.getBookInfo(bookId);
 		bookTitle.setText(book.getBookTitle());
+		Log.d("book", bookTitle.getText().toString());
 		bookAuthor.setText(book.getBookAuthor());
+		Log.d("book", bookAuthor.getText().toString());
 		bookPages.setText(book.getBookPages());
 		bookRating.setRating(book.getBookRating());
 		

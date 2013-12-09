@@ -16,6 +16,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,9 +79,10 @@ public class AddBookFragment extends Fragment {
 		
 		try{
 		dbTools.insertBook(book);
+		
 		Toast.makeText(mContext, "Success!", Toast.LENGTH_SHORT).show();
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 	}
 	

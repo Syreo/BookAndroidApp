@@ -22,5 +22,7 @@
     <string name="title_activity_view_book_list">ViewBookList</string>
     <string name="title_activity_view_book">ViewBook</string>
     <string name="title_activity_edit_book">EditBook</string>
-
+	<string name="save_button_text">Save</string>
+	<string name="cancel_button_text">Cancel</string>
+	<string name="edit_screen_title">Edit a Book</string>
 </resources>

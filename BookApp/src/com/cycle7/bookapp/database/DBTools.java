@@ -97,9 +97,9 @@ public class DBTools extends SQLiteOpenHelper{
 		Cursor cursor =  database.rawQuery(query, null);
 		if(cursor.moveToFirst()){
 			do{
-				book.setBookId(cursor.getLong(0));
-				book.setBookAuthor(cursor.getString(1));
-				book.setBookTitle(cursor.getString(2));
+				book.setBookId(cursor.getLong(0));//TODO fix cursor
+				book.setBookTitle(cursor.getString(1));
+				book.setBookAuthor(cursor.getString(2));
 				book.setBookPages(cursor.getString(3));
 				book.setBookRating(cursor.getFloat((4)));
 				

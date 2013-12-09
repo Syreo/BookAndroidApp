@@ -51,7 +51,6 @@
         android:layout_alignBaseline="@+id/editButton"
         android:layout_alignBottom="@+id/editButton"
         android:layout_marginLeft="14dp"
-        android:onClick="deleteBook"
         android:text="Delete" />
 
     <RatingBar
