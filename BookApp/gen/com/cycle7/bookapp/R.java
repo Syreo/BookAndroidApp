@@ -24,14 +24,14 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080016;
-        public static final int addBook=0x7f080005;
+        public static final int action_settings=0x7f080018;
+        public static final int addBook=0x7f080006;
         public static final int addBookButton=0x7f08000c;
         public static final int addReviewButton=0x7f080013;
         public static final int bookAuthor=0x7f080002;
-        public static final int bookId=0x7f080015;
+        public static final int bookId=0x7f080017;
         public static final int bookPages=0x7f080003;
-        public static final int bookRating=0x7f080006;
+        public static final int bookRating=0x7f080004;
         public static final int bookTitle=0x7f080001;
         public static final int cancelButton=0x7f080008;
         public static final int deleteButton=0x7f080011;
@@ -40,11 +40,13 @@ public final class R {
         public static final int logReadingButton=0x7f08000d;
         public static final int ratingTitle=0x7f080010;
         public static final int readingTimerButton=0x7f08000e;
-        public static final int resetButton=0x7f080004;
+        public static final int resetButton=0x7f080005;
         public static final int saveButton=0x7f080009;
         public static final int selectText=0x7f080000;
-        public static final int tableRow1=0x7f080014;
+        public static final int tableRow1=0x7f080016;
+        public static final int tableRow2=0x7f080014;
         public static final int textView1=0x7f080007;
+        public static final int textView2=0x7f080015;
         public static final int viewBookList=0x7f08000f;
         public static final int welcomeMessage=0x7f08000b;
     }
