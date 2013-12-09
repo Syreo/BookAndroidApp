@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">bookApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="add_book_option">Add Book</string>
+    <string name="log_reading_option">Log Reading Time</string>
+    <string name="reading_timer">Reading Timer</string>
+    <string name="welcome_message">Welcome to BookApp</string>
+    <string name="activity_add_book">AddBook</string>
+    <string name="select_text">Enter Book Info:</string>
+    <string name="read_list">Read List</string>
+    <string name="to_read_list">To-Read List</string>
+    <string name="add_book_button">Add Book</string>
+    <string name="reset_button">Reset</string>
+    <string name="book_title">Book Title</string>
+    <string name="book_author">Book Author</string>
+    <string name="book_pages"># of Pages</string>
+    <string name="book_rating">Rating:</string>
+    <string name="view_read_book_list">View Read Books</string>
+    <string name="title_activity_view_book_list">ViewBookList</string>
+    <string name="title_activity_view_book">ViewBook</string>
+    <string name="title_activity_edit_book">EditBook</string>
+
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/bookTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"
+        android:text="bookTitle" />
+
+    <TextView
+        android:id="@+id/bookAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:text="bookAuthor" />
+
+    <TextView
+        android:id="@+id/bookPages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookAuthor"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="bookPages" />
+
+    <RatingBar
+        android:id="@+id/bookRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookPages"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="88dp" />
+
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bookRating"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="58dp"
+        android:layout_toLeftOf="@+id/addReviewButton"
+        android:text="Edit" />
+
+    <Button
+        android:id="@+id/addReviewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editButton"
+        android:layout_alignBottom="@+id/editButton"
+        android:layout_centerHorizontal="true"
+        android:text="Add Review" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/addReviewButton"
+        android:layout_alignBottom="@+id/addReviewButton"
+        android:layout_toRightOf="@+id/addReviewButton"
+        android:text="Delete" />
+
+</RelativeLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cycle7.bookapp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="18" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.cycle7.bookapp.HomeScreenActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.cycle7.bookapp.fragments.AddBookFragment"
+            android:label="@string/activity_add_book"
+            android:parentActivityName="com.cycle7.bookapp.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cycle7.bookapp.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.cycle7.bookapp.AddBookActivity"
+            android:label="@string/activity_add_book"
+            android:parentActivityName="com.cycle7.bookapp.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cycle7.bookapp.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.cycle7.bookapp.ViewBookListActivity"
+            android:label="@string/title_activity_view_book_list"
+            android:parentActivityName="com.cycle7.bookapp.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cycle7.bookapp.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.cycle7.bookapp.ViewBookActivity"
+            android:label="@string/title_activity_view_book"
+            android:parentActivityName="com.cycle7.bookapp.ViewBookListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cycle7.bookapp.ViewBookList" />
+        </activity>
+        <activity
+            android:name="com.cycle7.bookapp.EditBookActivity"
+            android:label="@string/title_activity_edit_book">
+        </activity>
+    </application>
+
+</manifest>
