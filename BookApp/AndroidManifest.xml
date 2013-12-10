@@ -62,6 +62,10 @@
             android:name="com.cycle7.bookapp.EditBookActivity"
             android:label="@string/title_activity_edit_book">
         </activity>
+        <activity
+            android:name="com.cycle7.bookapp.ViewBookListFragment"
+            android:label="@string/title_activity_edit_book">
+        </activity>
        
     </application>
 

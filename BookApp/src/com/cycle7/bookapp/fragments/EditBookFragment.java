@@ -36,7 +36,7 @@ public class EditBookFragment extends Fragment {
 	private RatingBar bookRating;
 	private EditText bookReview;
 	private CheckBox bookRead;
-	private String bookId;
+	private long bookId;
 	private DBTools dbTools;
 
 	@Override
@@ -57,7 +57,7 @@ public class EditBookFragment extends Fragment {
 		bookRead = (CheckBox)v.findViewById(R.id.edit_checkbox);
 		Button saveButton = (Button)v.findViewById(R.id.saveButton);
 		Intent theIntent = getActivity().getIntent();
-		bookId = theIntent.getStringExtra("bookId");
+		bookId = theIntent.getLongExtra("bookId", 1);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -74,7 +74,7 @@ public class EditBookFragment extends Fragment {
 	
 	public void saveBook(){
 		Book book = new Book();
-		book.setBookId(Long.parseLong(bookId));
+		book.setBookId(bookId);
 		book.setBookTitle(bookTitle.getText().toString());
 		book.setBookAuthor(bookAuthor.getText().toString());
 		book.setBookPages(bookPages.getText().toString());

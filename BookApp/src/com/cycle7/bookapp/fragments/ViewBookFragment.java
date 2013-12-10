@@ -3,6 +3,7 @@ package com.cycle7.bookapp.fragments;
 import com.cycle7.bookapp.Book;
 import com.cycle7.bookapp.EditBookActivity;
 import com.cycle7.bookapp.R;
+import com.cycle7.bookapp.ViewBookListActivity;
 import com.cycle7.bookapp.database.DBTools;
 import android.os.Bundle;
 import android.app.AlertDialog;
@@ -15,18 +16,19 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.content.Intent;
 
 
 public class ViewBookFragment extends Fragment {
-	public static String BOOK_ID = "bookId";
+	
 	private TextView bookTitle;
 	private TextView bookAuthor;
 	private TextView bookPages;
 	private RatingBar bookRating;
 	private TextView bookReview;
 	private CheckBox bookRead;
-	private String bookId;
+	private long bookId;
 	private Book book;
 	private DBTools dbTools;
 
@@ -34,10 +36,6 @@ public class ViewBookFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		dbTools = new DBTools(getActivity());
-		
-
-	
-	
 	}
 	
 	@Override
@@ -79,9 +77,13 @@ public class ViewBookFragment extends Fragment {
 		builder.setMessage("Yes");
 		AlertDialog theAlertDialog = builder.create();
 		theAlertDialog.show();
+		try{
 		dbTools.deleteBook(bookId);
+		}catch(Exception e){
+			Toast.makeText(getActivity(), "Could not be deleted", Toast.LENGTH_LONG).show();
+		}
 		Intent theIntent = new Intent(getActivity(),
-				ViewBookListFragment.class);
+				ViewBookListActivity.class);
 		startActivity(theIntent);
 	}
 	
@@ -90,13 +92,14 @@ public class ViewBookFragment extends Fragment {
 	public void editBook(View view) {
 		
 		Intent intent = new Intent(getActivity(), EditBookActivity.class);
+		Log.d("book", "bookIdEdit: "+ bookId);
 		intent.putExtra("bookId", bookId);
 		startActivity(intent);
 	}
 	
 	public void onResume(){
 		super.onResume();
-		bookId = getActivity().getIntent().getStringExtra("bookId");
+		bookId = getArguments().getLong("bookId");
 		book = dbTools.getBookInfo(bookId);
 		bookTitle.setText(book.getBookTitle());
 		bookAuthor.setText(book.getBookAuthor());
@@ -108,7 +111,7 @@ public class ViewBookFragment extends Fragment {
 	
 	public static ViewBookFragment newInstance(long bookId){
 		Bundle args = new Bundle();
-		args.putLong(BOOK_ID, bookId);
+		args.putLong("bookId", bookId);
 		ViewBookFragment fragment = new ViewBookFragment();
 		fragment.setArguments(args);
 		return fragment;

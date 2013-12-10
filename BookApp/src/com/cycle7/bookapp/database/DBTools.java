@@ -96,7 +96,7 @@ public class DBTools extends SQLiteOpenHelper{
 		return bookList;
 	}
 
-	public Book getBookInfo(String id){
+	public Book getBookInfo(long id){
 		Book book = new Book();
 		//HashMap<String, String>bookMap = new HashMap<String, String>();
 		SQLiteDatabase database = this.getReadableDatabase();
@@ -157,7 +157,7 @@ public class DBTools extends SQLiteOpenHelper{
 		database.close();
 	}
 	
-	public void deleteBook(String id){
+	public void deleteBook(long id){
 		SQLiteDatabase database = this.getWritableDatabase();
 		String query = "DELETE FROM book where bookId ='"+id+"'";
 		database.execSQL(query);

@@ -8,9 +8,11 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v13.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cycle7.bookapp.database.DBTools;
 import com.cycle7.bookapp.fragments.ViewBookFragment;
@@ -48,20 +50,20 @@ public class BookPagerActivity extends Activity{
 				return ViewBookFragment.newInstance(book.getBookId());
 			}
 		});
-		bookTitle = (TextView)findViewById(R.id.bookTitle);
-		bookAuthor = (TextView)findViewById(R.id.bookAuthor);
-		bookPages = (TextView)findViewById(R.id.bookPages);
-		bookRating = (RatingBar)findViewById(R.id.bookRating);
-		bookReview = (TextView)findViewById(R.id.bookReview);
-		bookRead = (CheckBox)findViewById(R.id.bookReadCheckbox);
+
 		
-		long bookId = (long)getIntent().getLongExtra(ViewBookFragment.BOOK_ID, 1);
+		long bookId = getIntent().getLongExtra("bookId", 0);
 		for(int i = 0; i < books.size(); i++){
-			if(books.get(i).equals(bookId)){
+			if(books.get(i).getBookId() == bookId){
 				mViewPager.setCurrentItem(i);
+				
 				break;
+			}else {
+				Toast.makeText(this, "not found", Toast.LENGTH_LONG).show();
 			}
 		}
+		
+		
 		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			
 			@Override
@@ -71,24 +73,17 @@ public class BookPagerActivity extends Activity{
 					setTitle(book.getBookTitle());
 					
 				}
-				bookTitle.setText(book.getBookTitle());
-				bookAuthor.setText(book.getBookAuthor());
-				bookPages.setText(book.getBookPages());
-				bookRating.setRating(book.getBookRating());
-				bookReview.setText(book.getBookReview());
-				bookRead.setChecked(book.isBookRead());
-				
 			}
 			
 			@Override
 			public void onPageScrolled(int pos, float posOffset, int posOffsetPixels) {
-				// TODO Auto-generated method stub
+			
 				
 			}
 			
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				// TODO Auto-generated method stub
+				
 				
 			}
 		});
@@ -96,6 +91,7 @@ public class BookPagerActivity extends Activity{
 @Override
 public void onResume(){
 	super.onResume();
+
 	
 }
 }
