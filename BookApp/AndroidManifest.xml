@@ -54,10 +54,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cycle7.bookapp.ViewBookList" />
         </activity>
+         <activity
+            android:name="com.cycle7.bookapp.BookPagerActivity"
+            android:label="@string/title_activity_edit_book">
+        </activity>
         <activity
             android:name="com.cycle7.bookapp.EditBookActivity"
             android:label="@string/title_activity_edit_book">
         </activity>
+       
     </application>
 
 </manifest>

@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class AddBookFragment extends Fragment {
 	private RatingBar bookRating;
 	private DBTools dbTools;
 	private Context mContext;
-	
+	private EditText bookReview;
+	private CheckBox bookRead;
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -54,6 +56,8 @@ public class AddBookFragment extends Fragment {
 		bookAuthor = (EditText)v.findViewById(R.id.bookAuthor);
 		bookPages = (EditText)v.findViewById(R.id.bookPages);
 		bookRating = (RatingBar)v.findViewById(R.id.bookRating);
+		bookReview = (EditText)v.findViewById(R.id.bookReview);
+		bookRead = (CheckBox)v.findViewById(R.id.readCheckbox);
 		Button addButton = (Button)v.findViewById(R.id.addBook);
 		
 		addButton.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +80,11 @@ public class AddBookFragment extends Fragment {
 		book.setBookAuthor(bookAuthor.getText().toString());
 		book.setBookPages(bookPages.getText().toString());
 		book.setBookRating(bookRating.getRating());
-		
+		book.setBookReview(bookReview.getText().toString());
+		book.setBookRead(bookRead.isChecked());
 		try{
 		dbTools.insertBook(book);
-		
+		getActivity().finish();
 		Toast.makeText(mContext, "Success!", Toast.LENGTH_SHORT).show();
 		}catch(Exception e){
 			e.printStackTrace();

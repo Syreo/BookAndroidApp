@@ -12,17 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.content.Intent;
 
 
 public class ViewBookFragment extends Fragment {
-
+	public static String BOOK_ID = "bookId";
 	private TextView bookTitle;
 	private TextView bookAuthor;
 	private TextView bookPages;
 	private RatingBar bookRating;
+	private TextView bookReview;
+	private CheckBox bookRead;
 	private String bookId;
 	private Book book;
 	private DBTools dbTools;
@@ -44,6 +47,8 @@ public class ViewBookFragment extends Fragment {
 		bookAuthor = (TextView) v.findViewById(R.id.bookAuthor);
 		bookPages = (TextView) v.findViewById(R.id.bookPages);
 		bookRating = (RatingBar) v.findViewById(R.id.bookRating);
+		bookReview = (TextView)v.findViewById(R.id.bookReview);
+		bookRead = (CheckBox)v.findViewById(R.id.bookReadCheckbox);
 		Button deleteButton = (Button) v.findViewById(R.id.deleteButton);
 		Button editButton = (Button)v.findViewById(R.id.editButton);
 		deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -94,12 +99,19 @@ public class ViewBookFragment extends Fragment {
 		bookId = getActivity().getIntent().getStringExtra("bookId");
 		book = dbTools.getBookInfo(bookId);
 		bookTitle.setText(book.getBookTitle());
-		Log.d("book", bookTitle.getText().toString());
 		bookAuthor.setText(book.getBookAuthor());
-		Log.d("book", bookAuthor.getText().toString());
 		bookPages.setText(book.getBookPages());
 		bookRating.setRating(book.getBookRating());
-		
+		bookReview.setText(book.getBookReview());
+		bookRead.setChecked(book.isBookRead());
+	}
+	
+	public static ViewBookFragment newInstance(long bookId){
+		Bundle args = new Bundle();
+		args.putLong(BOOK_ID, bookId);
+		ViewBookFragment fragment = new ViewBookFragment();
+		fragment.setArguments(args);
+		return fragment;
 	}
 
 }

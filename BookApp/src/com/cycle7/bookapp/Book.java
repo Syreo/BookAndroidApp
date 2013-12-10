@@ -9,19 +9,21 @@ public class Book {
 	private String bookReview;
 	private String bookPages;
 	private float bookRating;
-	
+	private boolean bookRead;
 	
 	public Book(){
 		
 	}
 	
 	
-	public Book(String bookTitle, String bookAuthor, String bookReview, String bookPages, float bookRating){
+	public Book(String bookTitle, String bookAuthor, String bookPages, float bookRating, String bookReview, boolean bookRead){
 		this.bookTitle = bookTitle;
 		this.bookAuthor = bookAuthor;
 		this.bookReview = bookReview;
 		this.bookPages = bookPages;
 		this.bookRating = bookRating;
+		this.bookRead = bookRead;
+		
 	}
 	
 	public Book(String bookTitle, String bookAuthor, String bookPages, float bookRating){
@@ -76,6 +78,16 @@ public class Book {
 	}
 	public void setBookRating(float bookRating) {
 		this.bookRating = bookRating;
+	}
+
+
+	public boolean isBookRead() {
+		return bookRead;
+	}
+
+
+	public void setBookRead(boolean bookRead) {
+		this.bookRead = bookRead;
 	}
 
 	

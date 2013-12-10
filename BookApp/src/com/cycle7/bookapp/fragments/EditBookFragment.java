@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ public class EditBookFragment extends Fragment {
 	private EditText bookAuthor;
 	private EditText bookPages;
 	private RatingBar bookRating;
+	private EditText bookReview;
+	private CheckBox bookRead;
 	private String bookId;
 	private DBTools dbTools;
 
@@ -50,6 +53,8 @@ public class EditBookFragment extends Fragment {
 		bookAuthor = (EditText) v.findViewById(R.id.bookAuthor);
 		bookPages = (EditText) v.findViewById(R.id.bookPages);
 		bookRating = (RatingBar) v.findViewById(R.id.bookRating);
+		bookReview = (EditText)v.findViewById(R.id.bookReview);
+		bookRead = (CheckBox)v.findViewById(R.id.edit_checkbox);
 		Button saveButton = (Button)v.findViewById(R.id.saveButton);
 		Intent theIntent = getActivity().getIntent();
 		bookId = theIntent.getStringExtra("bookId");
@@ -66,25 +71,6 @@ public class EditBookFragment extends Fragment {
 		
 	}
 
-//	public void editBook(View view) {
-//		Book book = new Book();
-//
-//		book.setBookId(Long.parseLong((bookId)));
-//		bookTitle = (EditText) findViewById(R.id.bookTitle);
-//		bookAuthor = (EditText) findViewById(R.id.bookAuthor);
-//		bookPages = (EditText) findViewById(R.id.bookPages);
-//		bookRating = (RatingBar) findViewById(R.id.bookRating);
-//
-//		
-//		book.setBookTitle(bookTitle.getText().toString());
-//		book.setBookAuthor(bookAuthor.getText().toString());
-//		book.setBookPages(bookPages.getText().toString());
-//		book.setBookRating(bookRating.getRating());
-//		
-//
-//		this.goHome(view);
-//
-//	}
 	
 	public void saveBook(){
 		Book book = new Book();
@@ -93,9 +79,8 @@ public class EditBookFragment extends Fragment {
 		book.setBookAuthor(bookAuthor.getText().toString());
 		book.setBookPages(bookPages.getText().toString());
 		book.setBookRating(bookRating.getRating());
-		Log.d("book", bookId);
-		Log.d("book", bookTitle.getText().toString());
-		Log.d("book", bookAuthor.getText().toString());
+		book.setBookReview(bookReview.getText().toString());
+		book.setBookRead(bookRead.isChecked());
 		try{
 		dbTools.updateBook(book);
 		getActivity().finish();
@@ -118,7 +103,8 @@ public class EditBookFragment extends Fragment {
 		bookAuthor.setText(book.getBookAuthor());
 		bookPages.setText(book.getBookPages());
 		bookRating.setRating(book.getBookRating());
-		
+		bookReview.setText(book.getBookReview());
+		bookRead.setChecked(book.isBookRead());
 	}
 
 }

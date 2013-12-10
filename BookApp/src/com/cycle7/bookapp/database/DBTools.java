@@ -28,7 +28,7 @@ public class DBTools extends SQLiteOpenHelper{
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		String query = "CREATE TABLE book( bookId INTEGER PRIMARY KEY, bookTitle TEXT, bookAuthor TEXT, bookPages INTEGER, bookRating REAL)";
+		String query = "CREATE TABLE book( bookId INTEGER PRIMARY KEY, bookTitle TEXT, bookAuthor TEXT, bookPages INTEGER, bookRating REAL, bookReview TEXT, bookRead INTEGER)";
 		database.execSQL(query);
 	}
 
@@ -42,12 +42,20 @@ public class DBTools extends SQLiteOpenHelper{
 
 	
 	public void insertBook(Book book){
+		int bookRead;
 		SQLiteDatabase database = this.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("bookTitle", book.getBookTitle());
 		values.put("bookAuthor", book.getBookAuthor());
 		values.put("bookPages", book.getBookPages());
 		values.put("bookRating", book.getBookRating());
+		values.put("bookReview",book.getBookReview());
+		if(book.isBookRead()){
+			bookRead = 1;
+		}else {
+			bookRead = 0;
+		}
+		values.put("bookRead", bookRead);
 		database.insert("book", null, values);
 		database.close();
 		
@@ -92,17 +100,31 @@ public class DBTools extends SQLiteOpenHelper{
 		Book book = new Book();
 		//HashMap<String, String>bookMap = new HashMap<String, String>();
 		SQLiteDatabase database = this.getReadableDatabase();
-		
 		String query = "SELECT * FROM book WHERE bookId = '"+id +"'";
 		Cursor cursor =  database.rawQuery(query, null);
+		
+		int bookIdIndex = cursor.getColumnIndex("bookId");
+		int bookTitleIndex = cursor.getColumnIndex("bookTitle");
+		int bookAuthorIndex = cursor.getColumnIndex("bookAuthor");
+		int bookPagesIndex = cursor.getColumnIndex("bookPages");
+		int bookRatingIndex = cursor.getColumnIndex("bookRating");
+		int bookReviewIndex = cursor.getColumnIndex("bookReview");
+		int bookReadIndex = cursor.getColumnIndex("bookRead");
+		
 		if(cursor.moveToFirst()){
 			do{
-				book.setBookId(cursor.getLong(0));//TODO fix cursor
-				book.setBookTitle(cursor.getString(1));
-				book.setBookAuthor(cursor.getString(2));
-				book.setBookPages(cursor.getString(3));
-				book.setBookRating(cursor.getFloat((4)));
-				
+				book.setBookId(cursor.getLong(bookIdIndex));//TODO fix cursor
+				book.setBookTitle(cursor.getString(bookTitleIndex));
+				book.setBookAuthor(cursor.getString(bookAuthorIndex));
+				book.setBookPages(cursor.getString(bookPagesIndex));
+				book.setBookRating(cursor.getFloat((bookRatingIndex)));
+				book.setBookReview(cursor.getString(bookReviewIndex));
+				int bookRead = (cursor.getInt(bookReadIndex));
+				if(bookRead == 1){
+					book.setBookRead(true);
+				}else{
+					book.setBookRead(false);
+				}
 				
 				
 			}while(cursor.moveToNext());
@@ -112,7 +134,7 @@ public class DBTools extends SQLiteOpenHelper{
 	
 	public void updateBook(Book book){
 		SQLiteDatabase database = this.getWritableDatabase();
-
+		int bookRead = 0;
 
 		ContentValues values = new ContentValues();
 		values.put("bookId", book.getBookId());
@@ -120,7 +142,13 @@ public class DBTools extends SQLiteOpenHelper{
 		values.put("bookAuthor", book.getBookAuthor());
 		values.put("bookPages", book.getBookPages());
 		values.put("bookRating", book.getBookRating());
-		
+		values.put("bookReview", book.getBookReview());
+		if(book.isBookRead()){
+			bookRead = 1;
+		}else{
+			bookRead = 0;
+		}
+		values.put("bookRead", bookRead);
 		try{
 			database.replace("book", null, values);
 		}catch(Exception e){

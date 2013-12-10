@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewBookRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        >
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Title" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Author" />
+<!--     <TableRow -->
+<!--         android:id="@+id/tableRow2" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignParentLeft="true" -->
+<!--         android:layout_alignParentTop="true" -->
+<!--         android:padding="15dp" -->
         
-    </TableRow>
+<!--         > -->
+
+<!--         <TextView -->
+<!--             android:id="@+id/textView1" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--          	android:layout_marginRight="125dp" -->
+<!--          	android:textSize="18sp" -->
+<!--             android:text="Title" /> -->
+
+<!--         <TextView -->
+<!--             android:id="@+id/textView2" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--          	android:textSize="18sp" -->
+<!--             android:text="Author" /> -->
+        
+<!--     </TableRow> -->
     
     <TableRow
+        android:padding="15dp"
         android:id="@+id/tableRow1"
-        android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -36,12 +42,14 @@
 
         <TextView
             android:id="@+id/bookId"
+            
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone" />
 
         <TextView
             android:id="@+id/bookTitle"
+            android:layout_marginRight="90dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="bookName" />

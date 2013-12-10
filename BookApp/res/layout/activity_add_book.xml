@@ -41,6 +41,19 @@
         android:hint="@string/book_pages"
         android:inputType="number" />
 
+    <EditText
+        android:id="@+id/bookReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Review"
+        android:ems="10" />
+
+    <CheckBox
+        android:id="@+id/readCheckbox"
+        android:text="@string/add_book_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <RatingBar
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
