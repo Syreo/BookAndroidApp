@@ -2,6 +2,7 @@ package com.cycle7.bookapp.fragments;
 
 import com.cycle7.bookapp.AddBookActivity;
 import com.cycle7.bookapp.R;
+import com.cycle7.bookapp.ReadingTimerActivity;
 import com.cycle7.bookapp.ViewBookListActivity;
 import com.cycle7.bookapp.R.id;
 import com.cycle7.bookapp.R.layout;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 public class HomeScreenFragment extends Fragment {
 	private Button addBook;
 	private Button viewBookList;
+	private Button readingTimer;
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -30,6 +32,7 @@ public class HomeScreenFragment extends Fragment {
 		View v = inflater.inflate(R.layout.activity_main, parent, false);
 		addBook = (Button)v.findViewById(R.id.addBookButton);
 		viewBookList = (Button)v.findViewById(R.id.viewBookList);
+		readingTimer = (Button)v.findViewById(R.id.readingTimerButton);
 		addBook.setOnClickListener(new View.OnClickListener(){
 
 			@Override
@@ -44,6 +47,15 @@ public class HomeScreenFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				viewBookListActivity(v);	
+			}
+		});
+		
+		readingTimer.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), ReadingTimerActivity.class);
+				startActivity(intent);
 			}
 		});
 		

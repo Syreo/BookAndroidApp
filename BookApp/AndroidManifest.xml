@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
 
     <application
         android:allowBackup="true"
@@ -64,6 +64,10 @@
         </activity>
         <activity
             android:name="com.cycle7.bookapp.ViewBookListFragment"
+            android:label="@string/title_activity_edit_book">
+        </activity>
+        <activity
+            android:name="com.cycle7.bookapp.ReadingTimerActivity"
             android:label="@string/title_activity_edit_book">
         </activity>
        

@@ -1,65 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/viewBookRelativeLayout"
     android:layout_width="match_parent"
+    android:orientation="horizontal"
     android:layout_height="match_parent" >
 
-<!--     <TableRow -->
-<!--         android:id="@+id/tableRow2" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_alignParentLeft="true" -->
-<!--         android:layout_alignParentTop="true" -->
-<!--         android:padding="15dp" -->
-        
-<!--         > -->
 
-<!--         <TextView -->
-<!--             android:id="@+id/textView1" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--          	android:layout_marginRight="125dp" -->
-<!--          	android:textSize="18sp" -->
-<!--             android:text="Title" /> -->
-
-<!--         <TextView -->
-<!--             android:id="@+id/textView2" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--          	android:textSize="18sp" -->
-<!--             android:text="Author" /> -->
-        
-<!--     </TableRow> -->
     
-    <TableRow
-        android:padding="15dp"
-        android:id="@+id/tableRow1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        >
+ 
 
         <TextView
             android:id="@+id/bookId"
-            
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/bookTitle"
-            android:layout_marginRight="90dp"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="bookName" />
+            android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/bookAuthor"
+            <TextView
+                android:id="@+id/bookTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:maxWidth="120dp"
+                android:minWidth="120dp"
+                android:padding="10dp"
+                android:maxLines="4"
+                android:text="bookName" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="bookAuthor" />
+            android:layout_height="wrap_content" >
 
-    </TableRow>
+            <TextView
+                android:id="@+id/bookAuthor"
+                android:layout_marginTop="10dp"
+                android:maxWidth="120dp"
+                android:minWidth="120dp"
+                android:maxLines="4"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="bookAuthor" />
 
-</RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/isReadCheckbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:padding="10dp"
+                android:maxWidth="120dp"
+                android:minWidth="120dp"
+                android:enabled="false"
+                android:focusable="false"
+                android:text="Read" />
+
+        </LinearLayout>
+
+
+   
+
+</LinearLayout>

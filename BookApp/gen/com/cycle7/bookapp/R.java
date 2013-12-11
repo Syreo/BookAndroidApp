@@ -24,37 +24,40 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f050020;
+        public static final int action_settings=0x7f050023;
         public static final int addBook=0x7f050009;
         public static final int addBookButton=0x7f050014;
-        public static final int addReviewButton=0x7f05001c;
+        public static final int addReviewButton=0x7f05001f;
         public static final int bookAuthor=0x7f050003;
-        public static final int bookId=0x7f05001f;
+        public static final int bookId=0x7f050021;
         public static final int bookPages=0x7f050004;
         public static final int bookRating=0x7f050007;
-        public static final int bookReadCheckbox=0x7f050018;
+        public static final int bookReadCheckbox=0x7f05001b;
         public static final int bookReview=0x7f050005;
         public static final int bookTitle=0x7f050002;
         public static final int cancelButton=0x7f050010;
-        public static final int deleteButton=0x7f05001a;
-        public static final int editButton=0x7f05001b;
+        public static final int clearButton=0x7f05001a;
+        public static final int deleteButton=0x7f05001d;
+        public static final int editButton=0x7f05001e;
         public static final int edit_checkbox=0x7f05000f;
         public static final int fragmentContainer=0x7f050012;
+        public static final int isReadCheckbox=0x7f050022;
         public static final int logReadingButton=0x7f050015;
-        public static final int ratingTitle=0x7f050019;
+        public static final int ratingTitle=0x7f05001c;
         public static final int readCheckbox=0x7f050006;
         public static final int readingTimerButton=0x7f050016;
         public static final int resetButton=0x7f050008;
         public static final int saveButton=0x7f050011;
         public static final int selectText=0x7f050001;
-        public static final int tableRow1=0x7f05001e;
         public static final int textView1=0x7f05000a;
         public static final int textView2=0x7f05000c;
         public static final int textView3=0x7f05000d;
         public static final int textView4=0x7f05000e;
         public static final int textView5=0x7f05000b;
+        public static final int timerButton=0x7f050019;
+        public static final int timerScreen=0x7f050018;
         public static final int viewBookList=0x7f050017;
-        public static final int viewBookRelativeLayout=0x7f05001d;
+        public static final int viewBookRelativeLayout=0x7f050020;
         public static final int viewPager=0x7f050000;
         public static final int welcomeMessage=0x7f050013;
     }
@@ -63,10 +66,11 @@ public final class R {
         public static final int activity_edit_book=0x7f030001;
         public static final int activity_fragment=0x7f030002;
         public static final int activity_main=0x7f030003;
-        public static final int activity_view_book=0x7f030004;
-        public static final int activity_view_book_list=0x7f030005;
-        public static final int view_book=0x7f030006;
-        public static final int view_book_list_layout=0x7f030007;
+        public static final int activity_reading_timer=0x7f030004;
+        public static final int activity_view_book=0x7f030005;
+        public static final int activity_view_book_list=0x7f030006;
+        public static final int view_book=0x7f030007;
+        public static final int view_book_list_layout=0x7f030008;
     }
     public static final class menu {
         public static final int add_book=0x7f080000;
@@ -79,7 +83,7 @@ public final class R {
         public static final int action_settings=0x7f060001;
         public static final int activity_add_book=0x7f060006;
         public static final int add_book_button=0x7f06000a;
-        public static final int add_book_checkbox=0x7f06001c;
+        public static final int add_book_checkbox=0x7f06001d;
         public static final int add_book_option=0x7f060002;
         public static final int app_name=0x7f060000;
         public static final int book_author=0x7f06000d;
@@ -89,21 +93,24 @@ public final class R {
         public static final int book_review=0x7f060010;
         public static final int book_title=0x7f06000c;
         public static final int book_title_label=0x7f060012;
-        public static final int cancel_button_text=0x7f060018;
-        public static final int edit_screen_title=0x7f060019;
+        public static final int cancel_button_text=0x7f060019;
+        public static final int clear_button=0x7f06001e;
+        public static final int edit_screen_title=0x7f06001a;
+        public static final int initial_timer_button=0x7f060013;
+        public static final int initial_timer_text=0x7f06001f;
         public static final int log_reading_option=0x7f060003;
         public static final int read_list=0x7f060008;
         public static final int reading_timer=0x7f060004;
         public static final int reset_button=0x7f06000b;
-        public static final int save_button_text=0x7f060017;
+        public static final int save_button_text=0x7f060018;
         public static final int select_text=0x7f060007;
-        public static final int title_activity_edit_book=0x7f060016;
-        public static final int title_activity_view_book=0x7f060015;
-        public static final int title_activity_view_book_list=0x7f060014;
+        public static final int title_activity_edit_book=0x7f060017;
+        public static final int title_activity_view_book=0x7f060016;
+        public static final int title_activity_view_book_list=0x7f060015;
         public static final int to_read_list=0x7f060009;
-        public static final int view_book_delete=0x7f06001b;
-        public static final int view_book_edit=0x7f06001a;
-        public static final int view_read_book_list=0x7f060013;
+        public static final int view_book_delete=0x7f06001c;
+        public static final int view_book_edit=0x7f06001b;
+        public static final int view_read_book_list=0x7f060014;
         public static final int welcome_message=0x7f060005;
     }
     public static final class style {

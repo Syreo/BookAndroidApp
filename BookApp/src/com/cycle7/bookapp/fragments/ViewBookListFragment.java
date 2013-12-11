@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.cycle7.bookapp.Book;
@@ -51,7 +52,8 @@ public class ViewBookListFragment extends ListFragment {
 		bookAuthor.setText(b.getBookAuthor());
 		TextView bookId = (TextView)convertView.findViewById(R.id.bookId);
 		bookId.setText(String.valueOf(b.getBookId()));
-		
+		CheckBox bookRead = (CheckBox)convertView.findViewById(R.id.isReadCheckbox);
+		bookRead.setChecked(b.isBookRead());
 	return convertView;
 	}
 	}
