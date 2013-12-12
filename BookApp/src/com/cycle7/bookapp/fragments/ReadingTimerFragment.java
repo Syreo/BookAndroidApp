@@ -1,22 +1,30 @@
 package com.cycle7.bookapp.fragments;
 
+import java.util.Date;
+
 import com.cycle7.bookapp.R;
+import com.cycle7.bookapp.ReadingLog;
+import com.cycle7.bookapp.database.DBTools;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ReadingTimerFragment extends Fragment{
 	
 	private Button timerButton;
 	private TextView timerTextView;
 	private Button clearButton;
+	private Button saveButton;
+	private DBTools dbTools;
 	    long startTime = 0;
 
 	    //runs without a timer by reposting this handler at the end of the runnable
@@ -40,7 +48,7 @@ public class ReadingTimerFragment extends Fragment{
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-
+	        dbTools = new DBTools(getActivity());
 
 	    }
 	    
@@ -50,6 +58,7 @@ public class ReadingTimerFragment extends Fragment{
 	        timerTextView = (TextView)v.findViewById(R.id.timerScreen);
 	        clearButton = (Button)v.findViewById(R.id.clearButton);
 	        timerButton = (Button)v.findViewById(R.id.timerButton);
+	        saveButton = (Button)v.findViewById(R.id.timer_save_button);
 	        timerButton.setText("Start");
 	        timerButton.setOnClickListener(new View.OnClickListener() {
 
@@ -73,21 +82,54 @@ public class ReadingTimerFragment extends Fragment{
 				
 				@Override
 				public void onClick(View v) {
-					startTime = 0;
-					timerHandler.removeCallbacks(timerRunnable);
-					if(timerButton.getText().equals("Stop")){
-						timerButton.setText("Start");
-					}
-					timerTextView.setText("00:00:00");
+					clearTimer();
+				
 				}
 			});
+	        
+	        saveButton.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					saveTime();
+					
+				}
+			});
+	        
 			return v;
 	    }
 
 	  @Override
 	    public void onPause() {
 	        super.onPause();
-	        timerHandler.removeCallbacks(timerRunnable);
-	        timerButton.setText("start");
+//	        timerHandler.removeCallbacks(timerRunnable);
+//	        timerButton.setText("start");
 	    }
+	  
+	  
+	  public void clearTimer(){
+			startTime = 0;
+			timerHandler.removeCallbacks(timerRunnable);
+			if(timerButton.getText().equals("Stop")){
+				timerButton.setText("Start");
+			}
+			timerTextView.setText("00:00:00");
+	  }
+	  
+	  public void saveTime(){
+		  ReadingLog log = new ReadingLog();
+		  
+		  log.setReadingTime(startTime);
+		  Date date = new Date();
+		  log.setReadingDate(date.getTime());
+		 Log.d("book", String.valueOf(date.getTime()));
+		  
+		  try{
+			  dbTools.insertTime(log);
+			  Toast.makeText(getActivity(), "Time saved successfully!", Toast.LENGTH_SHORT).show();
+		  }catch(Exception e){
+			  Toast.makeText(getActivity(), "Could not save time!", Toast.LENGTH_SHORT).show();
+		  }
+		  
+	  }
 }

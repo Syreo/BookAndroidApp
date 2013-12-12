@@ -4,12 +4,20 @@ import java.util.ArrayList;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.cycle7.bookapp.Book;
 import com.cycle7.bookapp.BookPagerActivity;
 import com.cycle7.bookapp.R;
@@ -22,7 +30,8 @@ public class ViewBookListFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		dbTools = new DBTools(getActivity());
-	
+		setHasOptionsMenu(true);
+		
 	}
 	
 	
@@ -65,4 +74,16 @@ public class ViewBookListFragment extends ListFragment {
 		BookAdapter bookAdapter = new BookAdapter(bookList);
 		setListAdapter(bookAdapter);
 	}
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.sort_menu, menu);
+		 MenuItem item = menu.findItem(R.id.sort_menu);
+			
+			 
+		 
+	}
+
+	
 }

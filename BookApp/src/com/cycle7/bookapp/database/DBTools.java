@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.cycle7.bookapp.Book;
+import com.cycle7.bookapp.ReadingLog;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -20,6 +21,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBTools extends SQLiteOpenHelper{
 
+	private static final String BOOK_TABLE = "CREATE TABLE book( bookId INTEGER PRIMARY KEY, bookTitle TEXT, bookAuthor TEXT, bookPages INTEGER, bookRating REAL, bookReview TEXT, bookRead INTEGER)";
+	private static final String READING_TIME_TABLE = "CREATE TABLE readingTime( readingTimeId INTEGER PRIMARY KEY, readingTime INTEGER, readingDate INTEGER)";
+	//TODO make column names constants
+	
 	public DBTools(Context context){
 	
 		super(context, "book.sqlite", null, 1);
@@ -28,8 +33,13 @@ public class DBTools extends SQLiteOpenHelper{
 
 	@Override
 	public void onCreate(SQLiteDatabase database) {
-		String query = "CREATE TABLE book( bookId INTEGER PRIMARY KEY, bookTitle TEXT, bookAuthor TEXT, bookPages INTEGER, bookRating REAL, bookReview TEXT, bookRead INTEGER)";
-		database.execSQL(query);
+		//String query = "CREATE TABLE book( bookId INTEGER PRIMARY KEY, bookTitle TEXT, bookAuthor TEXT, bookPages INTEGER, bookRating REAL, bookReview TEXT, bookRead INTEGER)";
+		try{
+		database.execSQL(BOOK_TABLE);
+		database.execSQL(READING_TIME_TABLE);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -38,6 +48,15 @@ public class DBTools extends SQLiteOpenHelper{
 		String query = "DROP TABLE IF EXISTS book";
 		database.execSQL(query);
 		onCreate(database);
+	}
+	
+	public void insertTime(ReadingLog log){
+		SQLiteDatabase database = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put("readingTime", log.getReadingTime());
+		values.put("readingDate", log.getReadingDate());
+		database.insert("readingTime", null, values);
+		database.close();
 	}
 
 	
@@ -162,6 +181,34 @@ public class DBTools extends SQLiteOpenHelper{
 		String query = "DELETE FROM book where bookId ='"+id+"'";
 		database.execSQL(query);
 	}
+
+	public ArrayList<ReadingLog> getReadingLogs() {
+		
+		ArrayList<ReadingLog>logList = new ArrayList<ReadingLog>();
+		SQLiteDatabase database = getWritableDatabase();
+		String query = "SELECT * FROM readingTime";
+		Cursor cursor =  database.rawQuery(query, null);
+		int timerId = cursor.getColumnIndex("readingTimeId");
+		int readingTime = cursor.getColumnIndex("readingTime");
+		int readingDate = cursor.getColumnIndex("readingDate");
+		if(cursor.moveToFirst()){
+			do{
+				ReadingLog log = new ReadingLog();
+				try {
+					log.setReadingTimeId(cursor.getLong(timerId));
+					log.setReadingTime(cursor.getLong(readingTime));
+					log.setReadingDate(cursor.getLong(readingDate));
+					logList.add(log);
+				}catch(Exception e){
+					
+				}
+			}while(cursor.moveToNext());
+	}
+	database.close();
+		return logList;
+	}
+	
+	
 
 }
 
