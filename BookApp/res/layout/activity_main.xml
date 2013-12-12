@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_background"
     android:gravity="center|top"
     android:orientation="vertical"
     tools:context=".MainActivity" >
@@ -10,37 +11,53 @@
         android:id="@+id/welcomeMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:layout_marginTop="39dp"
         android:text="@string/welcome_message"
-        android:textSize="21sp" />
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/addBookButton"
+        style="@style/ButtonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="85dp"
+        android:background="@drawable/black_button"
         android:text="@string/add_book_option" />
 
     <Button
-        android:id="@+id/logReadingButton"
+        android:id="@+id/viewBookList"
+        style="@style/ButtonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:background="@drawable/black_button"
+        android:text="@string/view_read_book_list" />
+
+    <Button
+        android:id="@+id/logReadingButton"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/black_button"
         android:text="@string/log_reading_option" />
 
     <Button
         android:id="@+id/readingTimerButton"
+        style="@style/ButtonText"
         android:layout_width="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/black_button"
         android:text="@string/reading_timer" />
 
     <Button
-        android:id="@+id/viewBookList"
+        android:id="@+id/createBookList"
+        style="@style/ButtonText"
         android:layout_width="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_height="wrap_content"
-        android:text="@string/view_read_book_list"
-         />
+        android:background="@drawable/black_button"
+        android:text="Create Book List" />
 
 </LinearLayout>

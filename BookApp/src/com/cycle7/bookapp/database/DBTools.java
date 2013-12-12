@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.cycle7.bookapp.Book;
+import com.cycle7.bookapp.BookList;
 import com.cycle7.bookapp.ReadingLog;
 
 import android.content.ContentValues;
@@ -23,6 +24,7 @@ public class DBTools extends SQLiteOpenHelper{
 
 	private static final String BOOK_TABLE = "CREATE TABLE book( bookId INTEGER PRIMARY KEY, bookTitle TEXT, bookAuthor TEXT, bookPages INTEGER, bookRating REAL, bookReview TEXT, bookRead INTEGER)";
 	private static final String READING_TIME_TABLE = "CREATE TABLE readingTime( readingTimeId INTEGER PRIMARY KEY, readingTime INTEGER, readingDate INTEGER)";
+	public static final String BOOK_LIST_TABLE = "CREATE TABLE bookList( listId INTEGER PRIMARY KEY, bookListId INTEGER, bookId INTEGER, bookListName TEXT)";
 	//TODO make column names constants
 	
 	public DBTools(Context context){
@@ -37,6 +39,7 @@ public class DBTools extends SQLiteOpenHelper{
 		try{
 		database.execSQL(BOOK_TABLE);
 		database.execSQL(READING_TIME_TABLE);
+		database.execSQL(BOOK_LIST_TABLE);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -46,8 +49,49 @@ public class DBTools extends SQLiteOpenHelper{
 	public void onUpgrade(SQLiteDatabase database, int arg1, int arg2) {
 		
 		String query = "DROP TABLE IF EXISTS book";
+		String query2 = "DROP TABLE IF EXISTS readingTime";
+		String query3 = "DROP TABLE IF EXISTS bookList";
 		database.execSQL(query);
+		database.execSQL(query2);
+		database.execSQL(query3);
 		onCreate(database);
+	}
+	
+	public void addBookToList(long bookListId, long bookId){
+		
+	}
+	
+	public void createBookList(String bookListName){
+		SQLiteDatabase database = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put("bookListName", bookListName);
+		database.insert("bookList", null, values);
+		database.close();
+	}
+	
+	public ArrayList<BookList> getAllLists(){
+		ArrayList<BookList> bookList = new ArrayList<BookList>();
+		SQLiteDatabase database = this.getWritableDatabase();
+		String query = "SELECT * FROM bookList";
+		Cursor cursor =  database.rawQuery(query, null);
+		int bookListIdIndex = cursor.getColumnIndex("bookListId");
+		int bookNameIndex = cursor.getColumnIndex("bookName");
+		int bookIdIndex = cursor.getColumnIndex("bookId");
+		if(cursor.moveToFirst()){
+			do{
+				BookList list = new BookList();
+				try {
+					list.setBookListId(cursor.getLong(bookListIdIndex));
+					list.setBookListName(cursor.getString(bookNameIndex));
+					list.setBookId(cursor.getString(bookIdIndex));
+					bookList.add(list);
+				}catch(Exception e){
+					
+				}
+			}while(cursor.moveToNext());
+		}
+		database.close();
+		return bookList;
 	}
 	
 	public void insertTime(ReadingLog log){
@@ -93,7 +137,8 @@ public class DBTools extends SQLiteOpenHelper{
 		int bookAuthorIndex = cursor.getColumnIndex("bookAuthor");
 		int bookPagesIndex = cursor.getColumnIndex("bookPages");
 		int bookRatingIndex = cursor.getColumnIndex("bookRating");
-		
+		int bookReviewIndex = cursor.getColumnIndex("bookReview");
+		int bookReadIndex = cursor.getColumnIndex("bookRead");
 		if(cursor.moveToFirst()){
 			do{
 				Book book = new Book();
@@ -103,6 +148,13 @@ public class DBTools extends SQLiteOpenHelper{
 				book.setBookAuthor(cursor.getString(bookAuthorIndex));
 				book.setBookPages(cursor.getString(bookPagesIndex));
 				book.setBookRating(cursor.getFloat(bookRatingIndex));
+				book.setBookReview(cursor.getString(bookReviewIndex));
+				int bookRead = (cursor.getInt(bookReadIndex));
+				if(bookRead == 1){
+					book.setBookRead(true);
+				}else{
+					book.setBookRead(false);
+				}
 				bookList.add(book);
 				}catch(Exception e){
 					e.printStackTrace();

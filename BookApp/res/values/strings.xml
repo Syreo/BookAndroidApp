@@ -37,6 +37,7 @@
 	<string name="list_header_time">Time</string>
 	<string name="menu_option_alpha_author">Alphabetical -- Author</string>
 	<string name="menu_option_alpha_title">Alphabetical -- Title</string>
+	<string name="menu_option_read">Read</string>
 	<string name="sort_menu">Sort</string>
 	
 	<string-array name="array">

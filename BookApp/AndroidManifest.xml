@@ -74,6 +74,10 @@
             android:name="com.cycle7.bookapp.ReadingLogActivity"
             android:label="@string/title_activity_edit_book">
         </activity>
+        <activity
+            android:name="com.cycle7.bookapp.CreateBookListActivity"
+            android:label="@string/title_activity_edit_book">
+        </activity>
        
     </application>
 

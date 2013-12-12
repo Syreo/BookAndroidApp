@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/sort_menu"
-   	 android:title="@string/sort_menu"
-    
-   />
+  <item
+    android:id="@+id/action_settings"
+    android:icon="@drawable/ic_launcher"
+    android:showAsAction="always"
+    android:title="@string/sort_menu">
+    <menu>
+        <item
+            android:id="@+id/alpha_author"             
+            android:showAsAction="always"
+            android:title="@string/menu_option_alpha_author" />
+        <item
+            android:id="@+id/alpha_title"             
+            android:showAsAction="always"
+            android:title="@string/menu_option_alpha_title" />
+        <item
+            android:id="@+id/sort_read"
+            android:showAsAction="always"
+            android:title="@string/menu_option_read" />
+    </menu>
+</item>
 
 </menu>

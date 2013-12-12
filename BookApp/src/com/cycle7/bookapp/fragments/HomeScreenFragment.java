@@ -1,6 +1,8 @@
 package com.cycle7.bookapp.fragments;
 
 import com.cycle7.bookapp.AddBookActivity;
+import com.cycle7.bookapp.CreateBookListActivity;
+import com.cycle7.bookapp.CustomDialog;
 import com.cycle7.bookapp.R;
 import com.cycle7.bookapp.ReadingLogActivity;
 import com.cycle7.bookapp.ReadingTimerActivity;
@@ -9,33 +11,51 @@ import com.cycle7.bookapp.R.id;
 import com.cycle7.bookapp.R.layout;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class HomeScreenFragment extends Fragment {
+public class HomeScreenFragment extends Fragment{
 	private Button addBook;
 	private Button viewBookList;
 	private Button readingTimer;
 	private Button readingLog;
+	private Button createList;
+	private EditText listName;
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 	}
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
+	public View onCreateView(final LayoutInflater inflater, final ViewGroup parent, Bundle savedInstanceState){
 		View v = inflater.inflate(R.layout.activity_main, parent, false);
 		addBook = (Button)v.findViewById(R.id.addBookButton);
 		viewBookList = (Button)v.findViewById(R.id.viewBookList);
 		readingTimer = (Button)v.findViewById(R.id.readingTimerButton);
 		readingLog = (Button)v.findViewById(R.id.logReadingButton);
+		createList = (Button)v.findViewById(R.id.createBookList);
+		
+		createList.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			CustomDialog dialog = new CustomDialog();
+			dialog.show(getFragmentManager(), "fragmentDialog");
+			}
+		});
+		
+		
 		addBook.setOnClickListener(new View.OnClickListener(){
 
 			@Override

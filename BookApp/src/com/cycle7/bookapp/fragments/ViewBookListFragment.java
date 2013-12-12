@@ -1,6 +1,8 @@
 package com.cycle7.bookapp.fragments;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.cycle7.bookapp.Book;
 import com.cycle7.bookapp.BookPagerActivity;
 import com.cycle7.bookapp.R;
@@ -26,12 +24,13 @@ import com.cycle7.bookapp.database.DBTools;
 public class ViewBookListFragment extends ListFragment {
 	
 	private DBTools dbTools;
+	private ArrayList<Book> bookList;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		dbTools = new DBTools(getActivity());
 		setHasOptionsMenu(true);
-		
+
 	}
 	
 	
@@ -42,6 +41,8 @@ public class ViewBookListFragment extends ListFragment {
 		intent.putExtra("bookId", b.getBookId());
 		startActivity(intent);
 	}
+	
+	
 	public class BookAdapter extends ArrayAdapter<Book>{
 		public BookAdapter(ArrayList<Book>books){
 			super(getActivity(), 0, books);
@@ -54,6 +55,7 @@ public class ViewBookListFragment extends ListFragment {
 			convertView = getActivity().getLayoutInflater().inflate(R.layout.view_book_list_layout, null);
 			
 		}
+		
 		Book b = getItem(position);
 		TextView bookTitle = (TextView)convertView.findViewById(R.id.bookTitle);
 		bookTitle.setText(b.getBookTitle());
@@ -70,20 +72,70 @@ public class ViewBookListFragment extends ListFragment {
 	@Override
 	public void onResume(){
 		super.onResume();
-		ArrayList<Book> bookList = dbTools.getBooks();
+		bookList = dbTools.getBooks();
 		BookAdapter bookAdapter = new BookAdapter(bookList);
 		setListAdapter(bookAdapter);
 	}
 	
 	@Override
-	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-		super.onCreateOptionsMenu(menu, inflater);
-		inflater.inflate(R.menu.sort_menu, menu);
-		 MenuItem item = menu.findItem(R.id.sort_menu);
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.options_menu, menu);
+		MenuItem item = menu.findItem(R.id.alpha_author);
+		MenuItem item2 = menu.findItem(R.id.alpha_title);
+		MenuItem item3 = menu.findItem(R.id.sort_read);
+		item.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 			
-			 
-		 
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				sortAlphaByAuthor();
+				return false;
+			}
+		});
+		item2.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				sortAlphaByTitle();
+				return false;
+			}
+		});
+		
+		item3.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		});
 	}
+	
+	public void sortAlphaByAuthor(){
+		Collections.sort(bookList, new Comparator<Book>(){
 
+			@Override
+			public int compare(Book book1, Book book2) {
+				
+				return book1.getBookAuthor().compareTo(book2.getBookAuthor());
+			}
+			
+		});
+		BookAdapter bookAdapter = new BookAdapter(bookList);
+		setListAdapter(bookAdapter);
+	}
+	
+	public void sortAlphaByTitle(){
+		Collections.sort(bookList, new Comparator<Book>(){
+
+			@Override
+			public int compare(Book book1, Book book2) {
+				
+				return book1.getBookTitle().compareTo(book2.getBookTitle());
+			}
+			
+		});
+		BookAdapter bookAdapter = new BookAdapter(bookList);
+		setListAdapter(bookAdapter);
+	}
 	
 }
