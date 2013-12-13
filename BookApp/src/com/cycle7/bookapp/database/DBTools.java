@@ -24,7 +24,7 @@ public class DBTools extends SQLiteOpenHelper{
 
 	private static final String BOOK_TABLE = "CREATE TABLE book( bookId INTEGER PRIMARY KEY, bookTitle TEXT, bookAuthor TEXT, bookPages INTEGER, bookRating REAL, bookReview TEXT, bookRead INTEGER)";
 	private static final String READING_TIME_TABLE = "CREATE TABLE readingTime( readingTimeId INTEGER PRIMARY KEY, readingTime INTEGER, readingDate INTEGER)";
-	public static final String BOOK_LIST_TABLE = "CREATE TABLE bookList( listId INTEGER PRIMARY KEY, bookListId INTEGER, bookId INTEGER, bookListName TEXT)";
+	public static final String BOOK_LIST_TABLE = "CREATE TABLE bookList( bookListId INTEGER, bookId INTEGER, bookListName TEXT)";
 	//TODO make column names constants
 	
 	public DBTools(Context context){
@@ -75,7 +75,7 @@ public class DBTools extends SQLiteOpenHelper{
 		String query = "SELECT * FROM bookList";
 		Cursor cursor =  database.rawQuery(query, null);
 		int bookListIdIndex = cursor.getColumnIndex("bookListId");
-		int bookNameIndex = cursor.getColumnIndex("bookName");
+		int bookNameIndex = cursor.getColumnIndex("bookListName");
 		int bookIdIndex = cursor.getColumnIndex("bookId");
 		if(cursor.moveToFirst()){
 			do{

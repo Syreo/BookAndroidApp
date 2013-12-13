@@ -1,28 +1,26 @@
 package com.cycle7.bookapp.fragments;
 
-import com.cycle7.bookapp.AddBookActivity;
-import com.cycle7.bookapp.CreateBookListActivity;
-import com.cycle7.bookapp.CustomDialog;
-import com.cycle7.bookapp.R;
-import com.cycle7.bookapp.ReadingLogActivity;
-import com.cycle7.bookapp.ReadingTimerActivity;
-import com.cycle7.bookapp.ViewBookListActivity;
-import com.cycle7.bookapp.R.id;
-import com.cycle7.bookapp.R.layout;
+import java.util.ArrayList;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.cycle7.bookapp.AddBookActivity;
+import com.cycle7.bookapp.BookList;
+import com.cycle7.bookapp.CustomDialog;
+import com.cycle7.bookapp.R;
+import com.cycle7.bookapp.ReadingLogActivity;
+import com.cycle7.bookapp.ReadingTimerActivity;
+import com.cycle7.bookapp.ViewBookListActivity;
+import com.cycle7.bookapp.database.DBTools;
 
 
 public class HomeScreenFragment extends Fragment{
@@ -32,9 +30,16 @@ public class HomeScreenFragment extends Fragment{
 	private Button readingLog;
 	private Button createList;
 	private EditText listName;
+	private Button saveButton;
+	private Button cancelButton;
+
+	private DBTools dbTools;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		dbTools = new DBTools(getActivity());
+		
 	}
 	
 	@Override
@@ -50,8 +55,37 @@ public class HomeScreenFragment extends Fragment{
 			
 			@Override
 			public void onClick(View v) {
-			CustomDialog dialog = new CustomDialog();
+			final CustomDialog dialog = new CustomDialog();
+			
 			dialog.show(getFragmentManager(), "fragmentDialog");
+			saveButton = (Button)v.findViewById(R.id.save_button);
+			cancelButton = (Button)v.findViewById(R.id.list_cancel_button);
+			listName = (EditText)v.findViewById(R.id.listNameInput);
+//			cancelButton.setOnClickListener(new View.OnClickListener() {
+//				
+//				@Override
+//				public void onClick(View v) {
+//					dialog.dismiss();
+//					
+//				}
+//			});
+//		saveButton.setOnClickListener(new View.OnClickListener() {
+//			
+//			@Override
+//			public void onClick(View v) {
+//				if(listName.getText() != null){
+//				try{
+//					
+//				dbTools.createBookList(listName.getText().toString());
+//				dialog.dismiss();
+//				}catch(Exception e){
+//					e.printStackTrace();
+//				}
+//				}else {
+//					Toast.makeText(getActivity(), "Please enter a list name!", Toast.LENGTH_SHORT).show();
+//				}
+//			}
+//		});
 			}
 		});
 		
@@ -114,6 +148,15 @@ public class HomeScreenFragment extends Fragment{
 		Intent intent = new Intent(getActivity(), ViewBookListActivity.class);
 
 		startActivity(intent);
-	}	
+	}
+	
+	public void onResume(){
+		super.onResume();
+		ArrayList<BookList>test = new ArrayList<BookList>();
+		test = dbTools.getAllLists();
+		for(int i = 0; i < test.size(); i++){
+			Log.d("book", String.valueOf(test.size()));
+		}
+	}
 	
 }

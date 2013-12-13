@@ -2,7 +2,6 @@ package com.cycle7.bookapp;
 
 public class BookList {
 
-	private long id;
 	private long bookListId;
 	private String bookId;
 	private String bookListName;
@@ -17,14 +16,6 @@ public class BookList {
 		this.bookListId = bookListId;
 		this.bookId = bookId;
 		this.bookListName = bookListName;
-	}
-	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public long getBookListId() {
