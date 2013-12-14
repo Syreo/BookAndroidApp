@@ -17,6 +17,10 @@ public class BookList {
 		this.bookId = bookId;
 		this.bookListName = bookListName;
 	}
+	public BookList(long bookListId, String bookListName){
+		this.bookListId = bookListId;
+		this.bookListName = bookListName;
+	}
 
 	public long getBookListId() {
 		return bookListId;

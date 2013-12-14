@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:layout_marginTop="39dp"
+    
         android:text="@string/welcome_message"
         android:textSize="25sp" />
 
@@ -21,7 +21,6 @@
         style="@style/ButtonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
         android:background="@drawable/black_button"
         android:text="@string/add_book_option" />
 
@@ -59,5 +58,19 @@
         android:layout_height="wrap_content"
         android:background="@drawable/black_button"
         android:text="Create Book List" />
+
+    <Button
+        android:id="@+id/list_view_button"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/black_button"
+        android:text="View Book Lists" />
+
+    <Button
+        android:id="@+id/addBookToListButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Book to List" />
 
 </LinearLayout>

@@ -14,12 +14,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cycle7.bookapp.AddBookActivity;
+import com.cycle7.bookapp.AddBookToListActivity;
 import com.cycle7.bookapp.BookList;
 import com.cycle7.bookapp.CustomDialog;
 import com.cycle7.bookapp.R;
 import com.cycle7.bookapp.ReadingLogActivity;
 import com.cycle7.bookapp.ReadingTimerActivity;
 import com.cycle7.bookapp.ViewBookListActivity;
+import com.cycle7.bookapp.ViewListActivity;
 import com.cycle7.bookapp.database.DBTools;
 
 
@@ -32,9 +34,9 @@ public class HomeScreenFragment extends Fragment{
 	private EditText listName;
 	private Button saveButton;
 	private Button cancelButton;
-
+	private Button viewListButton;
 	private DBTools dbTools;
-	
+	private Button addToListButton;
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -50,7 +52,8 @@ public class HomeScreenFragment extends Fragment{
 		readingTimer = (Button)v.findViewById(R.id.readingTimerButton);
 		readingLog = (Button)v.findViewById(R.id.logReadingButton);
 		createList = (Button)v.findViewById(R.id.createBookList);
-		
+		viewListButton = (Button)v.findViewById(R.id.list_view_button);
+		addToListButton = (Button)v.findViewById(R.id.addBookToListButton);
 		createList.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -89,7 +92,15 @@ public class HomeScreenFragment extends Fragment{
 			}
 		});
 		
-		
+		viewListButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), ViewListActivity.class);
+				startActivity(intent);
+				
+			}
+		});
 		addBook.setOnClickListener(new View.OnClickListener(){
 
 			@Override
@@ -122,6 +133,15 @@ public class HomeScreenFragment extends Fragment{
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), ReadingTimerActivity.class);
 				startActivity(intent);
+			}
+		});
+		addToListButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), AddBookToListActivity.class);
+				startActivity(intent);
+				
 			}
 		});
 		
