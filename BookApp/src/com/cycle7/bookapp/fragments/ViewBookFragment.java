@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 
@@ -37,6 +38,8 @@ public class ViewBookFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		dbTools = new DBTools(getActivity());
 	}
+	
+	
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
@@ -77,14 +80,30 @@ public class ViewBookFragment extends Fragment {
 		builder.setMessage("Yes");
 		AlertDialog theAlertDialog = builder.create();
 		theAlertDialog.show();
-		try{
-		dbTools.deleteBook(bookId);
-		}catch(Exception e){
-			Toast.makeText(getActivity(), "Could not be deleted", Toast.LENGTH_LONG).show();
-		}
-		Intent theIntent = new Intent(getActivity(),
-				ViewBookListActivity.class);
-		startActivity(theIntent);
+		builder.setMessage("Are you sure you want to delete this entry?")
+		.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				try{
+					dbTools.deleteBook(bookId);
+					getActivity().finish();
+					}catch(Exception e){
+						Toast.makeText(getActivity(), "Could not be deleted", Toast.LENGTH_LONG).show();
+					}
+					
+				
+			}
+		})
+		.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				
+			}
+		});
+		
 	}
 	
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/activity_add_book_to_list"
+    android:orientation="vertical" >
+
+   
+
+       
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/addBookTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="4"
+            		android:maxWidth="120dp"
+            		android:minWidth="120dp"
+            		android:padding="10dp"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/addBookAuthor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="4"
+            		android:maxWidth="120dp"
+            		android:minWidth="120dp"
+            		android:padding="10dp"
+                    android:text="TextView" />
+
+            </TableRow>
+
+        </LinearLayout>
+
+

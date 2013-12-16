@@ -5,14 +5,17 @@ package com.cycle7.bookapp.fragments;
 import java.util.ArrayList;
 
 import android.app.ListFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.cycle7.bookapp.BookList;
 import com.cycle7.bookapp.R;
+import com.cycle7.bookapp.ViewBookListContentsActivity;
 import com.cycle7.bookapp.database.DBTools;
 
 public class ViewListFragment extends ListFragment{
@@ -25,13 +28,13 @@ public class ViewListFragment extends ListFragment{
 		dbTools = new DBTools(getActivity());
 	}
 	
-//	@Override
-//	public void onListItemClick(ListView l, View v, int position, long id){
-//		BookList bList = ((ListAdapter)getListAdapter()).getItem(position);
-//		Intent intent = new Intent(getActivity(), BookPagerActivity.class); 
-//		intent.putExtra("bookId", bList.getBookId());
-//		startActivity(intent);
-//	}
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id){
+		BookList bList = ((ListAdapter)getListAdapter()).getItem(position);
+		Intent intent = new Intent(getActivity(), ViewBookListContentsActivity.class); 
+		intent.putExtra("bookListId", bList.getBookListId());
+		startActivity(intent);
+	}
 	public class ListAdapter extends ArrayAdapter<BookList>{
 		public ListAdapter(ArrayList<BookList>lists){
 			super(getActivity(), 0, lists);
@@ -47,8 +50,6 @@ public class ViewListFragment extends ListFragment{
 			BookList bList = getItem(position);
 			TextView listName = (TextView)convertView.findViewById(R.id.bookListName);
 			listName.setText(bList.getBookListName());
-			TextView bookCount = (TextView)convertView.findViewById(R.id.bookCount);
-			bookCount.setText(String.valueOf(list.size()));
 			
 			return convertView;
 		}

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/activity_add_book_to_list"
     android:orientation="vertical" >
 
    
@@ -17,19 +18,23 @@
                     android:id="@+id/addBookTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="4"
+            		android:maxWidth="120dp"
+            		android:minWidth="120dp"
+            		android:padding="10dp"
                     android:text="TextView" />
 
                 <TextView
                     android:id="@+id/addBookAuthor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="4"
+            		android:maxWidth="120dp"
+            		android:minWidth="120dp"
+            		android:padding="10dp"
                     android:text="TextView" />
 
-                <CheckBox
-                    android:id="@+id/selectToAddCheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CheckBox" />
+
             </TableRow>
 
         </LinearLayout>

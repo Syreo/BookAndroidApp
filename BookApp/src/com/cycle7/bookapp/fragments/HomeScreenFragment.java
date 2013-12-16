@@ -11,32 +11,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
+import android.widget.ImageButton;
 import com.cycle7.bookapp.AddBookActivity;
-import com.cycle7.bookapp.AddBookToListActivity;
 import com.cycle7.bookapp.BookList;
 import com.cycle7.bookapp.CustomDialog;
 import com.cycle7.bookapp.R;
 import com.cycle7.bookapp.ReadingLogActivity;
 import com.cycle7.bookapp.ReadingTimerActivity;
+import com.cycle7.bookapp.TabClass;
 import com.cycle7.bookapp.ViewBookListActivity;
 import com.cycle7.bookapp.ViewListActivity;
 import com.cycle7.bookapp.database.DBTools;
 
 
 public class HomeScreenFragment extends Fragment{
-	private Button addBook;
-	private Button viewBookList;
-	private Button readingTimer;
-	private Button readingLog;
-	private Button createList;
-	private EditText listName;
-	private Button saveButton;
-	private Button cancelButton;
-	private Button viewListButton;
+	private ImageButton addBook;
+	private ImageButton viewAllBooks;
+	private ImageButton readingTimer;
+	private ImageButton readingLog;
+	private ImageButton createList;
+	private ImageButton viewListButton;
 	private DBTools dbTools;
-	private Button addToListButton;
+	private ImageButton addToListButton;
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -47,13 +43,13 @@ public class HomeScreenFragment extends Fragment{
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup parent, Bundle savedInstanceState){
 		View v = inflater.inflate(R.layout.activity_main, parent, false);
-		addBook = (Button)v.findViewById(R.id.addBookButton);
-		viewBookList = (Button)v.findViewById(R.id.viewBookList);
-		readingTimer = (Button)v.findViewById(R.id.readingTimerButton);
-		readingLog = (Button)v.findViewById(R.id.logReadingButton);
-		createList = (Button)v.findViewById(R.id.createBookList);
-		viewListButton = (Button)v.findViewById(R.id.list_view_button);
-		addToListButton = (Button)v.findViewById(R.id.addBookToListButton);
+		addBook = (ImageButton)v.findViewById(R.id.addBookButton);
+		viewAllBooks = (ImageButton)v.findViewById(R.id.viewAllBooks);
+		readingTimer = (ImageButton)v.findViewById(R.id.readingTimerButton);
+		readingLog = (ImageButton)v.findViewById(R.id.logReadingButton);
+		createList = (ImageButton)v.findViewById(R.id.createBookList);
+		viewListButton = (ImageButton)v.findViewById(R.id.viewAllLists);
+		addToListButton = (ImageButton)v.findViewById(R.id.addBookToListButton);
 		createList.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -61,34 +57,6 @@ public class HomeScreenFragment extends Fragment{
 			final CustomDialog dialog = new CustomDialog();
 			
 			dialog.show(getFragmentManager(), "fragmentDialog");
-			saveButton = (Button)v.findViewById(R.id.save_button);
-			cancelButton = (Button)v.findViewById(R.id.list_cancel_button);
-			listName = (EditText)v.findViewById(R.id.listNameInput);
-//			cancelButton.setOnClickListener(new View.OnClickListener() {
-//				
-//				@Override
-//				public void onClick(View v) {
-//					dialog.dismiss();
-//					
-//				}
-//			});
-//		saveButton.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				if(listName.getText() != null){
-//				try{
-//					
-//				dbTools.createBookList(listName.getText().toString());
-//				dialog.dismiss();
-//				}catch(Exception e){
-//					e.printStackTrace();
-//				}
-//				}else {
-//					Toast.makeText(getActivity(), "Please enter a list name!", Toast.LENGTH_SHORT).show();
-//				}
-//			}
-//		});
 			}
 		});
 		
@@ -119,7 +87,7 @@ public class HomeScreenFragment extends Fragment{
 			}
 		});
 		
-		viewBookList.setOnClickListener(new View.OnClickListener() {
+		viewAllBooks.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -139,13 +107,12 @@ public class HomeScreenFragment extends Fragment{
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(), AddBookToListActivity.class);
+				Intent intent = new Intent(getActivity(), TabClass.class);
 				startActivity(intent);
 				
 			}
 		});
 		
-		Toast.makeText(getActivity(), "here", Toast.LENGTH_SHORT).show();
 		return v;
 	}
 	
@@ -158,11 +125,6 @@ public class HomeScreenFragment extends Fragment{
 		Intent intent = new Intent(getActivity(), AddBookActivity.class);
 		startActivity(intent);
 	}
-	
-//	@Override
-//	public void onActivityResult(int requestCode, int resultCode, Intent data){
-//		
-//	}
 	
 	public void viewBookListActivity(View view) {
 		Intent intent = new Intent(getActivity(), ViewBookListActivity.class);

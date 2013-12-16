@@ -1,11 +1,9 @@
 package com.cycle7.bookapp;
 
-import com.cycle7.bookapp.database.DBTools;
+import java.util.ArrayList;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +12,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.cycle7.bookapp.database.DBTools;
 
 public class CustomDialog extends DialogFragment{
 	
@@ -46,16 +46,16 @@ public class CustomDialog extends DialogFragment{
 		  
 				@Override
 				public void onClick(View v) {
-					if(!listName.getText().toString().equals("")){
+					String name = listName.getText().toString();
+					if(!name.equals("") && checkForDuplicate(name)){
 					try{
-						
 					dbTools.createBookList(listName.getText().toString());
 					dialog.dismiss();
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-					}else {
-						Toast.makeText(getActivity(), "Please enter a list name!", Toast.LENGTH_SHORT).show();
+					}else{
+						Toast.makeText(getActivity(), "Blank or non-unique list names are not allowed", Toast.LENGTH_SHORT).show();
 					}
 				}  
 		  });  
@@ -63,11 +63,23 @@ public class CustomDialog extends DialogFragment{
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getActivity(), "Canceled!", Toast.LENGTH_SHORT).show();
 				dialog.dismiss();
 			}
 		});
 		  return dialog;  
 		 }  
+		 
+		 
+		 public boolean checkForDuplicate(String nameToCheck){
+			 boolean isUnique = true;
+			 ArrayList<BookList> listOfNames= dbTools.getAllLists();
+			 for(int i = 0; i < listOfNames.size(); i++){
+				 if(listOfNames.get(i).getBookListName().toLowerCase().equals(nameToCheck.toLowerCase())){
+					 isUnique = false;
+				 }
+			 }
+			 
+			 return isUnique;
+		 }
 		}  
 

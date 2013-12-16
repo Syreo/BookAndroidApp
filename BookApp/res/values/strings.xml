@@ -21,7 +21,7 @@
     <string name="book_author_label">Author:</string>
     <string name="book_title_label">Title:</string>
     <string name="initial_timer_button">Start</string>
-    <string name="view_read_book_list">View Read Books</string>
+    <string name="view_read_book_list">View All Books</string>
     <string name="title_activity_view_book_list">ViewBookList</string>
     <string name="title_activity_view_book">ViewBook</string>
     <string name="title_activity_edit_book">EditBook</string>
@@ -39,7 +39,10 @@
 	<string name="menu_option_alpha_title">Alphabetical -- Title</string>
 	<string name="menu_option_read">Read</string>
 	<string name="sort_menu">Sort</string>
-	
+	<string name="create_book_list_button">Create List</string>
+	<string name="view_book_lists_button">View Lists</string>
+	<string name="add_book_to_list_button">Add Book to List</string>
+	<string name="list_label">Lists:</string>
 	<string-array name="array">
 	    <item>
 	        Test

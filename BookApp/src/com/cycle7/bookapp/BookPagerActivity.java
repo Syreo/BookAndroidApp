@@ -58,8 +58,6 @@ public class BookPagerActivity extends Activity{
 				mViewPager.setCurrentItem(i);
 				
 				break;
-			}else {
-				Toast.makeText(this, "not found", Toast.LENGTH_LONG).show();
 			}
 		}
 		

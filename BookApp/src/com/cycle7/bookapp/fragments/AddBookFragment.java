@@ -3,20 +3,11 @@
  */
 package com.cycle7.bookapp.fragments;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
-import com.cycle7.bookapp.Book;
-import com.cycle7.bookapp.R;
-import com.cycle7.bookapp.R.id;
-import com.cycle7.bookapp.R.layout;
-import com.cycle7.bookapp.database.DBTools;
-
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +16,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import com.cycle7.bookapp.Book;
+import com.cycle7.bookapp.R;
+import com.cycle7.bookapp.database.DBTools;
 
 /**
  * @author Hyoung
@@ -68,7 +63,6 @@ public class AddBookFragment extends Fragment {
 				
 			}
 		});
-		Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG).show();
 		
 		return v;
 		
@@ -76,19 +70,38 @@ public class AddBookFragment extends Fragment {
 	
 	public void addBook(View view){
 		Book book = new Book();
-		book.setBookTitle(bookTitle.getText().toString());
-		book.setBookAuthor(bookAuthor.getText().toString());
+		String newBookTitle = bookTitle.getText().toString();
+		String newBookAuthor = bookAuthor.getText().toString();
+		if(checkForDuplicate(newBookTitle, newBookAuthor)){
+		book.setBookTitle(newBookTitle);
+		book.setBookAuthor(newBookAuthor);
 		book.setBookPages(bookPages.getText().toString());
 		book.setBookRating(bookRating.getRating());
 		book.setBookReview(bookReview.getText().toString());
 		book.setBookRead(bookRead.isChecked());
 		try{
-		dbTools.insertBook(book);
-		getActivity().finish();
-		Toast.makeText(mContext, "Success!", Toast.LENGTH_SHORT).show();
-		}catch(Exception e){
-			e.printStackTrace();
+			dbTools.insertBook(book);
+			getActivity().finish();
+			Toast.makeText(mContext, "Success!", Toast.LENGTH_SHORT).show();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		} else {
+			Toast.makeText(getActivity(), "That book already exists!", Toast.LENGTH_SHORT).show();
 		}
+		
 	}
+	public boolean checkForDuplicate(String bookTitle, String bookAuthor){
+		boolean isUnique = true;
+		ArrayList<Book>bookToCheck = dbTools.getBooks();
+		for(int i = 0; i< bookToCheck.size(); i++){
+			String name= bookToCheck.get(i).getBookTitle();
+			String author = bookToCheck.get(i).getBookAuthor();
+			if(name.toLowerCase().equals(bookTitle.toLowerCase()) && author.toLowerCase().equals(bookAuthor.toLowerCase())){
+				isUnique = false;
+			}
+		}
 	
+		return isUnique;
+	}
 }
