@@ -8,12 +8,20 @@
         android:id="@+id/contentsBookTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:maxLines="4"
+            android:maxWidth="120dp"
+            android:minWidth="120dp"
+            android:padding="10dp"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/contentBookAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:maxLines="4"
+            android:maxWidth="120dp"
+            android:minWidth="120dp"
+            android:padding="10dp"
         android:text="TextView" />
 
 </LinearLayout>

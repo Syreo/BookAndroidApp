@@ -68,7 +68,8 @@ public class RemoveBookFromListFragment extends ListFragment{
 			Book book = getItem(position);
 			bookTitle = (TextView)convertView.findViewById(R.id.addBookTitle);
 			bookAuthor = (TextView)convertView.findViewById(R.id.addBookAuthor);
-			cBox = new CheckBox(getActivity());		
+			cBox = new CheckBox(getActivity());
+			cBox.setId(position);
 			cBox.setOnClickListener(getOnClickDoSomething(cBox, position));
 			bookTitle.setText(book.getBookTitle());
 			bookAuthor.setText(book.getBookAuthor());
@@ -101,7 +102,7 @@ public class RemoveBookFromListFragment extends ListFragment{
 		getListView().addHeaderView(mHeader);
 		}
 		removeButton = (Button)mHeader.findViewById(R.id.addBooksButton);
-		removeButton.setText("Remove");
+		removeButton.setText("Remove Selected");
 		removeButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -114,12 +115,18 @@ public class RemoveBookFromListFragment extends ListFragment{
 	}
 	
 	public void updateAllLists(){
+		String listName = "";
 		booksToBeRemoved = new ArrayList<Long>();
 		bookListToBeDisplayed = new ArrayList<Book>();
 		bookListToBeDisplayed = dbTools.getBooks();
 		booksInSelectedList = new ArrayList<Book>();
 		BookList booksInList = new BookList();
-		String listName = listSpinner.getSelectedItem().toString();
+		if(listSpinner.getSelectedItem() != null){
+			
+			listName = listSpinner.getSelectedItem().toString();
+			}else {
+				listName = "None";
+			}
 		booksInList = dbTools.getListIdByName(listName);
 		listofBookIdsInSelectedList = dbTools.getAllBooksInList(booksInList.getBookListId());
 		booksInSelectedList = dbTools.getBooksFromList(listofBookIdsInSelectedList);
@@ -149,7 +156,11 @@ public class RemoveBookFromListFragment extends ListFragment{
 		lists = new ArrayList<BookList>();
 		listNames = new ArrayList<String>();
 		lists = dbTools.getAllLists();
-		
+		if(lists == null){
+			BookList nullList = new BookList();
+			nullList.setBookName("None");
+			lists.add(nullList);
+		}
 		for(int i = 0; i < lists.size(); i++){
 			String name = lists.get(i).getBookListName();
 			listNames.add(name);

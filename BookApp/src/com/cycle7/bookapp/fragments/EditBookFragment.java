@@ -49,11 +49,11 @@ public class EditBookFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
 		View v = inflater.inflate(R.layout.activity_edit_book, null);
 		
-		bookTitle = (EditText) v.findViewById(R.id.bookTitle);
-		bookAuthor = (EditText) v.findViewById(R.id.bookAuthor);
-		bookPages = (EditText) v.findViewById(R.id.bookPages);
-		bookRating = (RatingBar) v.findViewById(R.id.bookRating);
-		bookReview = (EditText)v.findViewById(R.id.bookReview);
+		bookTitle = (EditText) v.findViewById(R.id.bookTitleEdit);
+		bookAuthor = (EditText) v.findViewById(R.id.bookAuthorEdit);
+		bookPages = (EditText) v.findViewById(R.id.bookPagesEdit);
+		bookRating = (RatingBar) v.findViewById(R.id.bookRatingEdit);
+		bookReview = (EditText)v.findViewById(R.id.bookReviewEdit);
 		bookRead = (CheckBox)v.findViewById(R.id.edit_checkbox);
 		Button saveButton = (Button)v.findViewById(R.id.saveButton);
 		Intent theIntent = getActivity().getIntent();

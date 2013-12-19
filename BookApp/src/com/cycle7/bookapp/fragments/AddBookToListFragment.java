@@ -68,7 +68,8 @@ public class AddBookToListFragment extends ListFragment{
 			Book book = getItem(position);
 			bookTitle = (TextView)convertView.findViewById(R.id.addBookTitle);
 			bookAuthor = (TextView)convertView.findViewById(R.id.addBookAuthor);
-			cBox = new CheckBox(getActivity());		
+			cBox = new CheckBox(getActivity());	
+			cBox.setId(position);
 			cBox.setOnClickListener(getOnClickDoSomething(cBox, position));
 			bookTitle.setText(book.getBookTitle());
 			bookAuthor.setText(book.getBookAuthor());
@@ -119,13 +120,17 @@ public class AddBookToListFragment extends ListFragment{
  * updates the lists on resume and on spinner change. 
  */
 	public void updateAllLists(){
-		
+		String listName = "";
 		booksToBeAdded = new ArrayList<Long>();
 		bookListToBeDisplayed = new ArrayList<Book>();
 		bookListToBeDisplayed = dbTools.getBooks();
 		booksInSelectedList = new ArrayList<Book>();
 		BookList booksInList = new BookList();
-		String listName = listSpinner.getSelectedItem().toString();
+		if(listSpinner.getSelectedItem() != null){
+		listName = listSpinner.getSelectedItem().toString();
+		}else {
+			listName = "None";
+		}
 		booksInList = dbTools.getListIdByName(listName);
 		listOfBookIdsInSelectedList = dbTools.getAllBooksInList(booksInList.getBookListId());
 		booksInSelectedList = dbTools.getBooksFromList(listOfBookIdsInSelectedList);
@@ -193,6 +198,7 @@ public class AddBookToListFragment extends ListFragment{
 			}
 			
 		});
+		
 		listSpinner.setAdapter(adapter);
 	}
 }

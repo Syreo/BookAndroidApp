@@ -34,9 +34,9 @@ public class TabClass extends Activity{
         bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
 
         mTabsAdapter = new TabsAdapter(this, mViewPager);
-        mTabsAdapter.addTab(bar.newTab().setText("Add"),
+        mTabsAdapter.addTab(bar.newTab().setText("Add Books"),
                 AddBookToListFragment.class, null);
-        mTabsAdapter.addTab(bar.newTab().setText("Remove"),
+        mTabsAdapter.addTab(bar.newTab().setText("Remove Books"),
                 RemoveBookFromListFragment.class, null);
 
         if (savedInstanceState != null) {

@@ -122,7 +122,6 @@ public class ReadingTimerFragment extends Fragment{
 		  log.setReadingTime(startTime);
 		  Date date = new Date();
 		  log.setReadingDate(date.getTime());
-		 Log.d("book", String.valueOf(date.getTime()));
 		  
 		  try{
 			  dbTools.insertTime(log);

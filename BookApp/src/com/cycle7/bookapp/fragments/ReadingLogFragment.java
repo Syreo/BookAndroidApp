@@ -73,7 +73,6 @@ private View mHeader;
 	}
 	
 	public String convertDate(long toBeConverted){
-		Log.d("book", String.valueOf(toBeConverted));
 		DateFormat formatter = new SimpleDateFormat("MM/dd/yy");
 		String dateFormatted = formatter.format(toBeConverted); 
 		

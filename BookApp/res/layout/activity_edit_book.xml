@@ -26,7 +26,7 @@
             android:text="@string/book_title_label" />
 
         <EditText
-            android:id="@+id/bookTitle"
+            android:id="@+id/bookTitleEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -47,7 +47,7 @@
             android:text="@string/book_author_label" />
 
         <EditText
-            android:id="@+id/bookAuthor"
+            android:id="@+id/bookAuthorEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -71,7 +71,7 @@
             android:text="@string/book_pages" />
 
         <EditText
-            android:id="@+id/bookPages"
+            android:id="@+id/bookPagesEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -92,7 +92,7 @@
             android:text="@string/book_review" />
 
         <EditText
-            android:id="@+id/bookReview"
+            android:id="@+id/bookReviewEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10" />
@@ -107,7 +107,7 @@
         android:text="@string/add_book_checkbox" />
 
     <RatingBar
-        android:id="@+id/bookRating"
+        android:id="@+id/bookRatingEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          android:layout_marginBottom="30dp"

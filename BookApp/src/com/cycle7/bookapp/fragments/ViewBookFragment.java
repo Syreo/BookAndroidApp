@@ -7,6 +7,7 @@ import com.cycle7.bookapp.ViewBookListActivity;
 import com.cycle7.bookapp.database.DBTools;
 import android.os.Bundle;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -73,41 +74,35 @@ public class ViewBookFragment extends Fragment {
 	
 
 	public void deleteBook() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-		builder.setTitle("Confirm");
-		builder.setPositiveButton("Yes", null);
-		builder.setNegativeButton("No", null);
-		builder.setMessage("Yes");
-		AlertDialog theAlertDialog = builder.create();
-		theAlertDialog.show();
-		builder.setMessage("Are you sure you want to delete this entry?")
-		.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+		Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setMessage("Are you sure you want to delete this entry?");
+		builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				try{
-					dbTools.deleteBook(bookId);
-					getActivity().finish();
-					}catch(Exception e){
-						Toast.makeText(getActivity(), "Could not be deleted", Toast.LENGTH_LONG).show();
-					}
-					
-				
-			}
-		})
-		.setNegativeButton("No", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
+				dbTools.deleteBook(bookId);
+				getActivity().finish();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				
 			}
 		});
+		builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			
+			@Override 
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				
+			} 
+		});
 		
+		builder.show();
 	}
 	
 
-
+ 
 	public void editBook(View view) {
 		
 		Intent intent = new Intent(getActivity(), EditBookActivity.class);
