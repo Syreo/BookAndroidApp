@@ -85,7 +85,7 @@ private View mHeader;
 		super.onResume();
 		ArrayList<ReadingLog>log = dbTools.getReadingLogs();	
 		ReadingAdapter readingAdapter = new ReadingAdapter(log);
-		mHeader = getActivity().getLayoutInflater().inflate(R.layout.list_header, null);
+		mHeader = getActivity().getLayoutInflater().inflate(R.layout.log_header, null);
 		if(getListView().getHeaderViewsCount() < 1){
 		getListView().addHeaderView(mHeader);
 		}

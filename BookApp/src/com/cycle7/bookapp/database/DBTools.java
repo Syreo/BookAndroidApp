@@ -95,6 +95,17 @@ public class DBTools extends SQLiteOpenHelper{
 		
 	}
 	
+	public void deleteBookLists(ArrayList<Long>listIds){
+		SQLiteDatabase database = this.getWritableDatabase();
+		for(int i = 0; i<listIds.size(); i++){
+			String query = "DELETE FROM bookList WHERE bookListId = '"+listIds.get(i)+"'";
+			String query2 = "DELETE FROM bookName WHERE bookListId = '"+listIds.get(i)+"'";
+			database.execSQL(query);
+			database.execSQL(query2);
+		}
+		database.close();
+	}
+	
 	public void addManyBooksToList(long bookListId, ArrayList<Long>bookIds){
 		SQLiteDatabase database = this.getWritableDatabase();
 		ContentValues values = new ContentValues();

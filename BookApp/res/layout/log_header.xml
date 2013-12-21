@@ -4,21 +4,20 @@
     android:layout_height="match_parent"
      android:padding="10dp"
     android:orientation="horizontal" >
-    
-     <TextView
-        android:id="@+id/listNames"
+
+    <TextView
+        android:id="@+id/date"
         android:textSize="23sp"
         android:layout_marginRight="85dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="List Name" />
+        android:text="@string/list_header_date" />
 
-     <Button
-         android:id="@+id/deleteListButton"
-         style="@style/ButtonText"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:background="@drawable/black_button"
-         android:text="Delete Selected" />
+    <TextView
+        android:id="@+id/header"
+        android:textSize="23sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/list_header_time" />
 
 </LinearLayout>

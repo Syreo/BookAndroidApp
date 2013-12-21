@@ -87,7 +87,6 @@ public class AddBookToListFragment extends ListFragment{
 	        	if(checkbox.isChecked()){
 	        		checkbox.setText("test");
 	        		long bookId = bookListToBeDisplayed.get(position).getBookId();
-	        		Log.d("book", String.valueOf(bookId));
 	        		booksToBeAdded.add(bookId);
 	        	}else{
 	        		booksToBeAdded.remove(bookListToBeDisplayed.get(position));
